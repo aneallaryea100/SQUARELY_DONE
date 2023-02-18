@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_18_204521) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_18_210236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,32 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_204521) do
     t.text "default_shipping_address"
     t.string "country", limit: 50
     t.string "phone", limit: 20
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string "option_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.decimal "price"
+    t.string "sku"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.decimal "amount"
+    t.text "shipping_address"
+    t.text "order_address"
+    t.string "order_email"
+    t.string "order_state"
+    t.date "order_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
