@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_18_221850) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_19_143624) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,8 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_221850) do
     t.date "order_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end 
- 
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "sku"
     t.string "name"
@@ -83,6 +83,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_221850) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "categories_products", "categories"
+  add_foreign_key "categories_products", "products"
+  add_foreign_key "options_products", "options"
+  add_foreign_key "options_products", "products"
   add_foreign_key "order_details", "options"
   add_foreign_key "order_details", "products"
+  add_foreign_key "orders", "customers"
 end
