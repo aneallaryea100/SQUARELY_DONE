@@ -1,6 +1,6 @@
 ActiveAdmin.register Product do
 
-   permit_params :sku, :name, :description, :image, :stock, :price
+   permit_params :sku, :name, :description, :image, :stock, :price, :category
   #
   # or
   #
@@ -9,5 +9,19 @@ ActiveAdmin.register Product do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  form do |f|
+    f.semantic_errors
+    f.inputs do
+      f.input :sku
+      f.input :name
+      f.input :description
+      f.input :image, as: :file
+      f.input :stock
+      f.input :price
+      f.input :category
+    end
+    f.actions
+  end
   
 end
