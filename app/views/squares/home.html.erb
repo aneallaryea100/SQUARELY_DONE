@@ -1,1 +1,14 @@
 <h1>home page</h1>
+
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <%= product.name %>
+      <%= product.description %>
+      <%= product.price %>
+      <% if product.image.attached? %>
+        <%= image_tag product.image %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
