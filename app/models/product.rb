@@ -11,6 +11,10 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0.01}
   validates :category, presence: true
 
+  def image_resizer
+    image.variant(resize_to_limit: [300, 300]).processed
+  end
+
   private
 
   def create_category

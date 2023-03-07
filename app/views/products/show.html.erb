@@ -1,1 +1,10 @@
-<%= image_tag @product.image %>
+<%= link_to "Back", request.referrer || root_path, class: "backbtn" %>
+<div class="productContainer">
+    <div class="productImageHolder">
+    <%= image_tag @product.image %>
+    </div>
+    <div class="productDescribe">
+        <p class="productDescribeText"><%= @product.description %></p>
+    </div>
+</div>
+
