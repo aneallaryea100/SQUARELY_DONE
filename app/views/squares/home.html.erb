@@ -1,14 +1,19 @@
-<h1>home page</h1>
-
-<ul>
-  <% @products.each do |product| %>
-    <li>
-      <%= product.name %>
-      <%= product.description %>
-      <%= product.price %>
+<div class="pageContainer">
+    <% @products.each do |product| %>
+    <div class="cardContainer">
+    <%= link_to product_path(product) do %>
+    <div class="imageContainer">
       <% if product.image.attached? %>
-        <%= image_tag product.image %>
+        <%= image_tag product.image, class: "realImage" %>
       <% end %>
-    </li>
-  <% end %>
-</ul>
+    </div>
+      <div class="cardbody">
+        <h5 class="cardtitle"><%= product.name %></h5>
+        <p class="cardtext"><%= number_to_currency(product.price) %></p>
+      </div>
+      <% end %>
+  </div>
+    <% end %>
+</div>
+
+
