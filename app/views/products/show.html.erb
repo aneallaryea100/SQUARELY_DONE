@@ -1,10 +1,17 @@
 <%= link_to "Back", request.referrer || root_path, class: "backbtn" %>
 <div class="productContainer">
     <div class="productImageHolder">
-    <%= image_tag @product.image %>
+    <%= image_tag @product.image, class: "productImagereal" %>
     </div>
-    <div class="productDescribe">
-        <p class="productDescribeText"><%= @product.description %></p>
+    <div class="productproductbody">
+        <h5 class="productName"><%= @product.name %></h5>
+        <h6 class="productproductprice"><%= number_to_currency(@product.price) %></h6>
+        <p> Category: <%= @product.category %> </p>
+        <div class="productDescribe">
+            <p class="productDescribeText"><%= @product.description %></p>
+        </div>
+        <h1>Available Options</h1>
     </div>
+    
 </div>
 

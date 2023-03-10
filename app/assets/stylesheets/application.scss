@@ -91,3 +91,35 @@
   padding: 1rem;
   font-size: medium;
  }
+
+//  product page---show
+
+.productContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 50rem;
+  margin: 0 auto; 
+}
+
+.productImageHolder {
+  width: 360px;
+}
+
+.productImagereal {
+  width: 100%;
+}
+
+.productproductbody {
+  text-align: center;
+}
+
+.productName {
+  color: #000;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.productproductprice {
+  color: rgba($color: #861717, $alpha: 1.0);
+  font-size: 2rem;
+}
