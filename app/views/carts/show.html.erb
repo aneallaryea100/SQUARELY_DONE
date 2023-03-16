@@ -1,2 +1,9 @@
 <h2>Cart Details</h2>
 
+<% @cart.product_items.each do |item| %>
+    <ul>
+        <li>
+            <% item.quantity%>&times;<% item.product.title %>
+        </li>
+    </ul>
+<%end%>

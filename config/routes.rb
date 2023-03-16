@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   resources :products
   resources :carts
+  resources :product_items
 
   root "squares#home"
 end

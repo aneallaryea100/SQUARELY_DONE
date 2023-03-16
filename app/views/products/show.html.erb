@@ -11,7 +11,7 @@
             <p class="productDescribeText"><%= @product.description %></p>
         </div>
         <h1>Available Options</h1>
+        <%= link_to "Add to Cart", product_items_path(product_id: @product), class: "button" %>
     </div>
-    
 </div>
 
