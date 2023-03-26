@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
     
       def show
         @product = Product.find(params[:id])
+        @cart = Cart.find_by(id: session[:cart_id])
       end
     
       def new

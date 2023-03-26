@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
 
-    before_action :set_cart, only: [:show, :destroy]
+    before_action :set_cart
     rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
     
     def index
@@ -14,6 +14,13 @@ class CartsController < ApplicationController
     def show
         @cart = current_cart
     end
+
+    def add_product
+        product = Product.find(params[:product_id])
+        @cart.add_product(product)
+        redirect_to cart_path(@cart), notice: "#{product.name} added to cart."
+      end
+      
 
     def destroy
         @cart.destroy if @cart.id == session[:cart_id]

@@ -11,7 +11,7 @@
             <p class="productDescribeText"><%= @product.description %></p>
         </div>
         <h1>Available Options</h1>
-        <%= button_to "Add to Cart", cart_path(product_id: @product.id), method: :post, class: "button" %>
+        <%= button_to "Add to Cart", cart_add_product_path(@cart), params: { product_id: @product.id }, method: :post, class: "button" %>
     </div>
 </div>
 
