@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   
   resources :products
-  resources :carts
+  resources :carts, only: [:show, :destroy]
   resources :product_items
 
   root "squares#home"

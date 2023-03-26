@@ -1,9 +1,31 @@
-<h2>Cart Details</h2>
+<h1>Cart</h1>
 
-<% @cart.product_items.each do |item| %>
-    <ul>
-        <li>
-            <% item.quantity%>&times;<% item.product.title %>
-        </li>
-    </ul>
-<%end%>
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart.product_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= number_to_currency(item.product.price) %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(item.total_price) %></td>
+        <td><%= button_to 'Remove', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="3"></td>
+      <td><strong>Subtotal:</strong></td>
+      <td><%= number_to_currency(@cart.total_price) %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%# <%= button_to 'Checkout', new_order_path, method: :get %>

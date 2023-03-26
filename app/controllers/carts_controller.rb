@@ -1,13 +1,18 @@
 class CartsController < ApplicationController
 
     before_action :set_cart, only: [:show, :destroy]
-    rescue_from ActiveRecord::RecordNotFound, with :invalid_cart
+    rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
+    
+    def index
+        @cart = current_cart
+    end
     
     def new
         @cart = Cart.new
     end
 
     def show
+        @cart = current_cart
     end
 
     def destroy
@@ -27,7 +32,7 @@ class CartsController < ApplicationController
     end
 
     def invalid_cart
-        logger_error 'You are trying to access an ivalid cart'
-        redirect_to home_url, notice: 'Invalid Cart'
+        logger.error 'You are trying to access an ivalid cart'
+        redirect_to root_path, notice: 'Invalid Cart'
     end
 end

@@ -3,6 +3,10 @@ class ProductItemsController < ApplicationController
 	include CurrentCart
 	before_action :set_cart, only: [:create]
 	before_action :set_product_item, only: [:show, :destroy]
+
+	def index
+		@product_items = ProductItem.all
+	  end
 	
 	def create
 		product = Product.find(params[:product_id])
