@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   resources :products
   post '/carts/:cart_id/add_product', to: 'carts#add_product', as: 'cart_add_product'
+  get '/cart', to: 'carts#show'
   resources :product_items
 
   root "squares#home"

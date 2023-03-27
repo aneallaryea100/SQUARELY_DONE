@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     @current_cart
   end
 
+  def cart_items_count
+    current_cart.product_items.count
+  end
+
   private
 
   def set_cart

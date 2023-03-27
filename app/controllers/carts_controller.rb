@@ -31,8 +31,12 @@ class CartsController < ApplicationController
     private
 
     def set_cart
-        @cart = Cart.find(params[:id])
-    end
+        @cart = Cart.find_by(id: session[:cart_id])
+        if @cart.nil?
+          redirect_to root_path, notice: 'Invalid Cart'
+        end
+      end
+      
 
     def cart_params
         params[:cart]
