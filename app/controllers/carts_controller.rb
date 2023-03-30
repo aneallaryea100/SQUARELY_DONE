@@ -13,13 +13,17 @@ class CartsController < ApplicationController
 
     def show
         @cart = current_cart
+        @product_item = ProductItem.all
     end
 
     def add_product
         product = Product.find(params[:product_id])
+        product_item = @cart.product_items.build(product: product)
+        product_item.quantity = 1
+        product_item.save
         @cart.add_product(product)
-        redirect_to cart_path(@cart), notice: "#{product.name} added to cart."
-      end
+        redirect_to root_path(@cart), notice: "#{product.name} added to cart."
+    end
       
 
     def destroy

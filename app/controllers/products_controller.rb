@@ -1,12 +1,12 @@
 class ProductsController < ApplicationController
     def index
         @products = Product.all
-      end
+    end
     
-      def show
-        @product = Product.find(params[:id])
-        @cart = Cart.find_by(id: session[:cart_id])
-      end
+    def show
+      @product = Product.find(params[:id])
+    end
+    
     
       def new
         @product = Product.new

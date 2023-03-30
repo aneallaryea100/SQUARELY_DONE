@@ -13,7 +13,16 @@ class Cart < ActiveRecord::Base
 	end
 
 	def total_price
-		product_items.to_a.sum{|item| item.total_price}
+		product_items.to_a.sum { |item| item.product.price * item.quantity }
+	end
+
+	def check_total
+		product_items.to_a.sum { |item| item.product.price * item.quantity }
+	end
+	  
+
+	def products
+		product_items.map(&:product)
 	end
 	
 end

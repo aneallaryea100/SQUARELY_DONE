@@ -1,0 +1,5 @@
+<h1>Product Item Details</h1>
+<p><strong>Product Name:</strong> <%= @product_item.product.name %></p>
+<p><strong>Quantity:</strong> <%= @product_item.quantity %></p>
+<p><strong>Price:</strong> <%= @product_item.product.price %></p>
+<%= link_to 'Remove Item', remove_product_item_path(@product_item), method: :delete, data: { confirm: 'Are you sure you want to remove this item from your cart?' } %>
