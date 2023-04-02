@@ -22,7 +22,8 @@ class ProductItemsController < ApplicationController
 	end
 
 	def destroy
-		@product_item = ProductItem.find(params[:id])
+		@cart = current_cart
+		@product_item = @cart.ProductItem.find(params[:id])
 		@product_item.destroy
 		redirect_to cart_path, notice: 'Item was successfully removed from your cart.'
 	end
