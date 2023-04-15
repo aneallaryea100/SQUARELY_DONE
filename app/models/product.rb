@@ -1,7 +1,10 @@
 class Product < ApplicationRecord
+
+  before_destroy :ensure_not_product_item
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :options
   has_one_attached :image
+  has_many :product_items
 
   after_create :create_category
   
@@ -13,6 +16,15 @@ class Product < ApplicationRecord
 
   def image_resizer
     image.variant(resize_to_limit: [300, 300]).processed
+  end
+
+  def ensure_not_product_item
+    if product_items.empty?
+      return true
+    else
+      error.add(:base, 'You have Product Items')
+      return false
+    end
   end
 
   private

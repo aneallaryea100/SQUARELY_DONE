@@ -1,0 +1,48 @@
+<h1>Cart</h1>
+
+
+<table class="table">
+  <% if @cart.products.any? %>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.products.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= number_to_currency(item.price) %></td>
+          <td><%= item.product_items.map(&:quantity).sum %></td>
+          <td><%= number_to_currency(item.price * item.product_items.map(&:quantity).sum) %></td>
+          <td><%= link_to 'Remove', remove_product_item_path(item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="3"></td>
+        <td><strong>Subtotal:</strong></td>
+        <td><%= number_to_currency(@cart.total_price) %></td>
+      </tr>
+      <tr>
+        <td colspan="4"></td>
+        <%# <td><%= link_to 'Checkout', new_order_path, class: 'btn btn-primary' %></td> %>
+      </tr>
+    </tbody>
+  <% else %>
+    <tr>
+      <td>Your Cart is empty</td>
+    </tr>
+  <% end %>
+</table>
+
+
+
+
+<%# <%= button_to 'Checkout', new_order_path, method: :get %>
+
+
+
