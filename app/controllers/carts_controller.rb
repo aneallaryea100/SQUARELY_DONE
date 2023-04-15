@@ -17,19 +17,13 @@ class CartsController < ApplicationController
     end
 
     def add_product
-        @cart = current_cart
         product = Product.find(params[:product_id])
         product_item = @cart.product_items.build(product: product)
         quantity = params[:quantity].to_i
-        # product_item.quantity = 1
-        # product_item.save
-        success, message = @cart.add_product(product, quantity)
-
-        if success
+        product_item.quantity += quantity
+        product_item.save
+        @cart.add_product(product, quantity)
         redirect_to root_path(@cart), notice: "#{product.name} added to cart."
-        else
-            redirect_to product_path(product), alert: message
-        end
     end
       
 
@@ -37,7 +31,7 @@ class CartsController < ApplicationController
         @cart = current_cart
         @cart.destroy if @cart.id == session[:cart_id]
         session[:cart_id] = nil
-        redirect_to home_url, notice: 'Your cart is Empty'
+        redirect_to root_url, notice: 'Your cart is Empty'
     end
 
     private

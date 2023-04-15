@@ -1,4 +1,4 @@
-<%= link_to "Back", request.referrer || root_path, class: "backbtn" %>
+<%= link_to "Back", root_path, class: "backbtn" %>
 <div class="productContainer">
     <div class="productImageHolder">
     <%= image_tag @product.image, class: "productImagereal" %>
@@ -11,11 +11,12 @@
             <p class="productDescribeText"><%= @product.description %></p>
         </div>
         <h1>Available Options</h1>
-        <%= form_tag cart_add_product_path(@cart), method: :post do %>
-            <%= label_tag :quantity, "Quantity:" %>
-            <%= select_tag :quantity, options_for_select([1, 2, 3, 4, 5], 1) %>
+       <%= form_tag(cart_add_product_path(@cart), method: :post) do %>
             <%= hidden_field_tag :product_id, @product.id %>
-            <%= submit_tag "Add to Cart", class: "button" %>
-        <% end %>
+            <%= label_tag :quantity, "Quantity:" %>
+            <%= number_field_tag :quantity, 1, min: 1 %>
+            <%= submit_tag "Add to Cart" %>
+       <% end %>
+
     </div>
 </div>
