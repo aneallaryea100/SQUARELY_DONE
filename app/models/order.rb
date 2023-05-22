@@ -8,5 +8,7 @@ class Order < ApplicationRecord
   validates :order_email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :order_state, presence: true, inclusion: { in: %w(pending processing shipped delivered cancelled) }
   validates :order_date, presence: true  
+
+  STATES = ['Pending', 'Processing', 'Shipped', 'Delivered'].freeze
 end
   
