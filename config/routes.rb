@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :product_items, only: [:create, :update, :destroy, :show]
   delete '/product_items/:id', to: 'product_items#destroy', as: 'remove_product_item'
 
+  resources :orders, only: [:new, :create]
+
 
 
 
