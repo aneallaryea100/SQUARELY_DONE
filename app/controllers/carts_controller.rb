@@ -18,12 +18,18 @@ class CartsController < ApplicationController
 
     def add_product
         product = Product.find(params[:product_id])
-        product_item = @cart.product_items.build(product: product)
-        quantity = params[:quantity].to_i
-        product_item.quantity += quantity
-        product_item.save
-        @cart.add_product(product, quantity)
-        redirect_to root_path(@cart), notice: "#{product.name} added to cart."
+        current_cart = @cart
+        if current_cart.product_items.include?(product)
+            @product_item = current_cart.product_items.find_by(:product_id => product)
+            @product_item.quantity += 1
+        else
+            product_item = @cart.product_items.build(product: product)
+            quantity = params[:quantity].to_i
+            product_item.quantity += quantity
+            product_item.save
+            @cart.add_product(product, quantity)
+            redirect_to root_path(@cart), notice: "#{product.name} added to cart."
+        end
     end
       
 
